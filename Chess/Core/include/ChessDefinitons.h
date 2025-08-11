@@ -1,4 +1,5 @@
 #pragma once
+#include <stdint.h>
 
 enum Piece : uint8_t {
 	WhitePawn, WhiteKnight, WhiteBishop, WhiteRook, WhiteQueen, WhiteKing,

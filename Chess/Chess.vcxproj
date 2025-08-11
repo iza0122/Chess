@@ -22,11 +22,13 @@
     <ClInclude Include="Core\include\Bitboard.h" />
     <ClInclude Include="Core\include\Board.h" />
     <ClInclude Include="Core\include\ChessDefinitons.h" />
+    <ClInclude Include="Core\include\LoadGame.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\src\Bitboard.cpp" />
     <ClCompile Include="Core\src\Board.cpp" />
     <ClCompile Include="Core\src\Game.cpp" />
+    <ClCompile Include="Core\src\LoadGame.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -81,24 +83,28 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\$(MSBuildProjectName)</OutDir>
+    <OutDir>$(SolutionDir)bin\$(MSBuildProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin\$(MSBuildProjectName)\Intermediate\</IntDir>
     <ExternalIncludePath>E:\Chess\Chess\Core\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\$(MSBuildProjectName)</OutDir>
+    <OutDir>$(SolutionDir)bin\$(MSBuildProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin\$(MSBuildProjectName)\Intermediate\</IntDir>
     <ExternalIncludePath>E:\Chess\Chess\Core\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\$(MSBuildProjectName)</OutDir>
+    <OutDir>$(SolutionDir)bin\$(MSBuildProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin\$(MSBuildProjectName)\Intermediate\</IntDir>
     <ExternalIncludePath>E:\Chess\Chess\Core\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(MSBuildProjectName)</OutDir>
+    <OutDir>$(SolutionDir)bin\$(MSBuildProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin\$(MSBuildProjectName)\Intermediate\</IntDir>
     <ExternalIncludePath>E:\Chess\Chess\Core\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

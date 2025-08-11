@@ -1,7 +1,7 @@
 #pragma once
 #include "ChessDefinitons.h"
+#include "LoadGame.h"
 #include "Bitboard.h"
-#include <iostream>
 
 struct Move {
 	ui from;
@@ -19,4 +19,5 @@ public:
 	void move(const Piece &type,const Move &move);
 	void printBoard();
 };
+
 
