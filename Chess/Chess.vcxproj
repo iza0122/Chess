@@ -19,21 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\include\Board.h" />
-    <ClInclude Include="Core\include\ChessDefinitions.h" />
     <ClInclude Include="Core\include\Bitboard.h" />
-    <ClInclude Include="Core\include\Game.h" />
-    <ClInclude Include="Core\include\LoadGame.h" />
-    <ClInclude Include="Core\include\SaveGame.h" />
-    <ClInclude Include="Core\include\Utility.h" />
+    <ClInclude Include="Core\include\Board.h" />
+    <ClInclude Include="Core\include\ChessDefinitons.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\src\Bitboard.cpp" />
     <ClCompile Include="Core\src\Board.cpp" />
     <ClCompile Include="Core\src\Game.cpp" />
-    <ClCompile Include="Core\src\LoadGame.cpp" />
-    <ClCompile Include="Core\src\SaveGame.cpp" />
-    <ClCompile Include="Core\src\Utility.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
