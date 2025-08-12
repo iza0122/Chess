@@ -29,3 +29,14 @@ u64 lowerBits(ui index)
 {
 	return ((C64(1) << index) - 1);
 }
+
+
+int popcount(const u64& bitboard)
+{
+	return std::popcount(bitboard);
+}
+
+int hammingDistance(const u64& obj1, const u64& obj2) {
+	return std::popcount(obj1 ^ obj2);
+}
+
