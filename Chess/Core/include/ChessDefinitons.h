@@ -1,10 +1,27 @@
 #pragma once
 #include <stdint.h>
 
+struct Move {
+	ui from;
+	ui to;
+	Move(ui f, ui t) : from(f), to(t) {}
+};
+
 enum Piece : uint8_t {
 	WhitePawn, WhiteKnight, WhiteBishop, WhiteRook, WhiteQueen, WhiteKing,
 	BlackPawn, BlackKnight, BlackBishop, BlackRook, BlackQueen, BlackKing,
 	NoPiece
+};
+
+enum direction : int8_t {
+	N = 8,
+	NE = 9,
+	E = 1,
+	SE = -7,
+	S = -8,
+	SW = -9,
+	W = -1,
+	NW = 7,
 };
 
 enum enumSquare {

@@ -39,4 +39,3 @@ int popcount(const u64& bitboard)
 int hammingDistance(const u64& obj1, const u64& obj2) {
 	return std::popcount(obj1 ^ obj2);
 }
-

@@ -3,12 +3,6 @@
 #include "LoadGame.h"
 #include "Bitboard.h"
 
-struct Move {
-	ui from;
-	ui to;
-	Move(ui f, ui t) : from(f), to(t) {}
-};
-
 class Board {
 private:
 	u64 pieces[12] = { 0ULL };

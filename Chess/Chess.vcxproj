@@ -23,12 +23,14 @@
     <ClInclude Include="Core\include\Board.h" />
     <ClInclude Include="Core\include\ChessDefinitons.h" />
     <ClInclude Include="Core\include\LoadGame.h" />
+    <ClInclude Include="Core\include\MoveGeneration.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\src\Bitboard.cpp" />
     <ClCompile Include="Core\src\Board.cpp" />
     <ClCompile Include="Core\src\Game.cpp" />
     <ClCompile Include="Core\src\LoadGame.cpp" />
+    <ClCompile Include="Core\src\MoveGeneration.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
