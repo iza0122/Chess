@@ -1,6 +1,5 @@
 #pragma once
 #include "ChessDefinitons.h"
-class MoveGeneration
-{
-};
+#include "Bitboard.h"
 
+std::vector<u64> createKinghtAttack();

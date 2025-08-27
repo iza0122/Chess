@@ -1,5 +1,18 @@
 #pragma once
 #include <stdint.h>
+#include <vector>
+
+struct vector2D{
+	int x, y;
+	vector2D(int X = 0, int Y = 0) : x(X), y(Y) {}
+	vector2D operator+(const vector2D &other) const {
+        return vector2D(x + other.x, y + other.y);
+    } 
+	vector2D operator-(const vector2D& other) const {
+        return vector2D(x - other.x, y - other.y);
+    } 
+};
+
 
 //Type definitions
 using u64 = unsigned long long;
