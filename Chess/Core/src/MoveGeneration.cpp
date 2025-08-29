@@ -16,6 +16,21 @@ vector2D pawnDirection[2] = {
     {-1, 1}
 };
 
+vector2D pawnMove = {0, 1};
+
+vector2D pawnFirstMove = {0, 2};
+
+vector2D kingDirection[8] = {
+    {1, 0},
+    {1, 1},
+    {0, 1},
+    {-1, 1},
+    {-1, 0},
+    {-1, -1},
+    {0, -1},
+    {1, -1}
+};
+
 std::vector<u64> createKinghtAttack(){
     std::vector<u64> KnightAttack(64);
     for(int i = 0; i < 64; i++){
@@ -46,4 +61,21 @@ std::vector<u64> createPawnAttack(){
         PawnAttack[i] = currentBitboard;
     }
     return PawnAttack;  
+}
+
+std::vector<u64> createKingAttack()
+{
+    std::vector<u64> KingAttack(64);
+    for(int i = 0; i < 64; i++){
+        vector2D currentSquare(i % 8, i / 8);
+        u64 currentBitboard = 0;
+        for (int j = 0; j < 8; j++){
+            vector2D sum = currentSquare + kingDirection[j];
+            if (sum.x >= 0 && sum.y >= 0 && sum.x < 8 && sum.y < 8){
+                setBit(currentBitboard, sum.x + 8*sum.y);
+            }
+        }
+        KingAttack[i] = currentBitboard;
+    }
+    return KingAttack;  
 }

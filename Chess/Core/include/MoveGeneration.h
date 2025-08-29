@@ -4,3 +4,5 @@
 std::vector<u64> createKinghtAttack();
 
 std::vector<u64> createPawnAttack();
+
+std::vector<u64> createKingAttack();
