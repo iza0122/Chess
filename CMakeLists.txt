@@ -12,14 +12,17 @@ set(SOURCES
     ${SRC_DIR}/Board.cpp
     ${SRC_DIR}/Game.cpp
     ${SRC_DIR}/LoadGame.cpp
-    ${SRC_DIR}/MoveGeneration.cpp)
+    ${SRC_DIR}/MoveGeneration.cpp
+    ${SRC_DIR}/MagicBitboard.cpp
+    )
 
 set(HEADERS 
     ${HEADER_DIR}/Bitboard.h
     ${HEADER_DIR}/Board.h
     ${HEADER_DIR}/ChessDefinitons.h
     ${HEADER_DIR}/LoadGame.h
-    ${HEADER_DIR}/MoveGeneration.h)
+    ${HEADER_DIR}/MoveGeneration.h
+    ${HEADER_DIR}/MagicBitboard.h)
 
 add_executable(Chess ${SOURCES} ${HEADERS})
 
