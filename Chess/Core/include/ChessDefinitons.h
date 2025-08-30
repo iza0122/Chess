@@ -66,3 +66,4 @@ constexpr u64 LightSquares = C64(0x55aa55aa55aa55aa);
 constexpr u64 DarkSquares = C64(0xaa55aa55aa55aa55);
 constexpr u64 Empty = C64(0x0000000000000000);
 constexpr u64 Universe = C64(0xffffffffffffffff);
+constexpr u64 Border = C64(0xff818181818181ff);
