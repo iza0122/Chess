@@ -365,3 +365,5 @@ FodyWeavers.
 build/
 
 bin/
+
+.vscode/
