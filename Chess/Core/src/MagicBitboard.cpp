@@ -1,8 +1,8 @@
 #include "MagicBitboard.h"
 #include "Bitboard.h"
 #include <random>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 
 vector2D bishopDirection[4] = {
     {1,1},
@@ -71,14 +71,15 @@ u64 bishopBlockerMask(ui index)
     return blockerMask;
 }
 
-uint64_t random_magic_number() {
-    static std::mt19937_64 rng(std::random_device{}());
-    static std::uniform_int_distribution<uint64_t> dist(0, UINT64_MAX);
-    // Sinh số magic với nhiều bit set, tránh số quá sparse
-    uint64_t magic = dist(rng) & dist(rng) & dist(rng);
-    magic |= 0x8100000000000081ULL; // Đảm bảo có bit ở góc
-    magic |= 1ULL; // Đảm bảo số lẻ
-    return magic;
+uint64_t random_uint64() {
+  uint64_t u1, u2, u3, u4;
+  u1 = (uint64_t)(rand()) & 0xFFFF; u2 = (uint64_t)(rand()) & 0xFFFF;
+  u3 = (uint64_t)(rand()) & 0xFFFF; u4 = (uint64_t)(rand()) & 0xFFFF;
+  return u1 | (u2 << 16) | (u3 << 32) | (u4 << 48);
+}
+
+uint64_t random_uint64_fewbits() {
+  return random_uint64() & random_uint64() & random_uint64();
 }
 
 constexpr int rookShift[64] = {
@@ -102,19 +103,29 @@ constexpr u64 rookMask[64] = {
 	0x7e01010101010100, 0x7c02020202020200, 0x7a04040404040400, 0x7608080808080800, 0x6e10101010101000, 0x5e20202020202000, 0x3e40404040404000, 0x7e80808080808000
 };
 
+constexpr u64 rookMagic[64] = {
+    0x2380004000201080, 0x2040100020004001, 0x180086002100080, 0x4080048008021000, 0xa00086004100200, 0x80018004004200, 0x400640810030082, 0x4280014100102080,
+    0x80a002600450080, 0x4005004004802100, 0x81004104102000, 0x3441000921021000, 0x2002010460008, 0x806001004020008, 0x3541002100140200, 0x25000260810002,
+    0x800040042002d2, 0x10104000442000, 0x50028010802000, 0xf0008028001080, 0x8008008040080, 0x10100080c0002, 0xa00040002010890, 0xa42020000670084,
+    0xc80084040002000, 0x200640005006, 0x51410100200091, 0x101c900201000, 0x21080100050010, 0x242001200190410, 0x1a1400081011, 0x1204200140091,
+    0x1000400020800088, 0x1100442000401000, 0x204102001004100, 0x4006102202004008, 0x28010400800881, 0x80100040100081e, 0x101100e24000148,
+    0x44004412000981, 0x480094220084000, 0x10200050024002, 0x61002000110042, 0x5005001890021, 0x8010500090010, 0x9000864010002, 0x501100142440008,
+    0x12a040040820001, 0xa44408209002200, 0x1010084000200040, 0x208012004200, 0x2243001001900, 0x1022000810042200, 0x1c22000830040600, 0x800100508220400, 
+    0x1000a44820300, 0x81430110800021, 0x80401100260082, 0x2001010830c1, 0x200210049045001, 0x42060088209c3042, 0x700a604001811, 0x80201100084, 0x168004a21040086
+};
+
 u64 findRookMagic(ui square){
-    u64 magic = random_magic_number();
+    u64 magic = random_uint64_fewbits();
     int size = 1ULL << (64 - rookShift[square]);
     std::vector<u64> rookAttack(size, 0);
-    u64 rookBlocker = rookBlockerMask(square);
-    std::vector<u64> occupancy = blockerBoard(rookBlocker);
+    std::vector<u64> occupancy = blockerBoard(rookMask[square]);
     int i = 0;
     while(true){
         if (i == size) break;
         u64 index = ((occupancy[i] * magic) >> rookShift[square]);
         if(rookAttack[index] != 0){
             std::fill(rookAttack.begin(), rookAttack.end(), 0);
-            magic = random_magic_number();
+            magic = random_uint64_fewbits();
             i = 0;
             continue;
         }
@@ -124,11 +135,31 @@ u64 findRookMagic(ui square){
     return magic;
 }
 
+bool checkMagic(ui square, u64 magic){
+    int size = 1ULL << (64 - rookShift[square]);
+    std::vector<u64> rookAttack(size, 0);
+    std::vector<u64> occupancy = blockerBoard(rookMask[square]);
+    int i = 0;
+    while(true){
+        if (i == size) break;
+        u64 index = ((occupancy[i] * magic) >> rookShift[square]);
+        if(rookAttack[index] != 0){
+            return false;
+        }
+        rookAttack[index] = 1;
+        i++;
+    }
+    return true;
+}
+
+
 int main(){
-    std::cout << findRookMagic(7) << "\n";
-    // for (int i = 0; i < 64; i++){
-    //     std::cout << "0x" << std::hex << findRookMagic(i) <<", ";
-    // }
+    // std::cout << findRookMagic(7) << "\n";
+    for (int i = 0; i < 64; i++){
+        // std::cout << "0x" << std::hex << findRookMagic(i) <<", ";
+        std::cout << i << " ";
+        if(!checkMagic(i, rookMagic[i])) std::cout << "Collision\n";
+    }
     system("pause");
     return 0;
 }
