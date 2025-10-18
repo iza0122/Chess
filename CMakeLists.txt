@@ -14,6 +14,7 @@ set(SOURCES
     ${SRC_DIR}/LoadGame.cpp
     ${SRC_DIR}/MoveGeneration.cpp
     ${SRC_DIR}/MagicBitboard.cpp
+    ${SRC_DIR}/AttackLookup.cpp
     )
 
 set(HEADERS 
@@ -22,7 +23,9 @@ set(HEADERS
     ${HEADER_DIR}/ChessDefinitons.h
     ${HEADER_DIR}/LoadGame.h
     ${HEADER_DIR}/MoveGeneration.h
-    ${HEADER_DIR}/MagicBitboard.h)
+    ${HEADER_DIR}/MagicBitboard.h
+    ${HEADER_DIR}/AttackLookup.h
+    )   
 
 add_executable(Chess ${SOURCES} ${HEADERS})
 
