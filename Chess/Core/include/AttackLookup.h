@@ -3,6 +3,6 @@
 #include "Bitboard.h"
 const std::vector<u64> kinghtAttackTable();
 
-const std::vector<u64> pawnAttackTable();
+const std::array<std::vector<u64>, 2> pawnAttackTable();
 
 const std::vector<u64> kingAttackTable();
