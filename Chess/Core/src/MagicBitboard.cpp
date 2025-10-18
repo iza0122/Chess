@@ -291,7 +291,7 @@ u64 getBishopAttack(int square, u64 occupancy) {
  * @brief Generates a list of possible rook attack bitboards for a given square.
  * 
  * This function calculates all possible attack bitboards for a rook placed on the specified square.
- * and maps it to its respective magic index
+ * and maps to its respective magic index
  * 
  * @param square The square index (0-63) representing the position of the rook on the chessboard.
  * @return A vector of 64-bit unsigned integers (u64), where each element represents a possible attack bitboard
@@ -310,6 +310,28 @@ const std::vector<u64> rookAttackList(ui square) {
 }
 
 /**
+ * @brief Generates a list of bishop attack bitboards for a given square.
+ *
+ * This function calculates all possible attack bitboards for a bishop
+ * placed on the specified square and maps to its respective magic index.
+ *
+ * @param square The square index (0-63) representing the position of the bishop on the chessboard.
+ * @return A vector of 64-bit unsigned integers (u64), where each element represents
+ *         a possible attack bitboard for the bishop on the given square.
+ */
+const std::vector<u64> bishopAttackList(ui square) {
+    u64 bishopBlocker = bishopBlockerMask(square);
+    std::vector<u64> bishopOccupancy = blockerBoard(bishopBlocker);
+    int size = bishopOccupancy.size();
+    std::vector<u64> result(size);
+    for (int i = 0; i < size; i++){
+        int index = (bishopOccupancy[i] * bishopMagic[square]) >> bishopShift[square];
+        result[index] = getBishopAttack(square, bishopOccupancy[i]);
+    }
+    return result;
+}
+
+/**
  * @brief Generates a table of precomputed attack bitboards for a rook on each square of the chessboard.
  * 
  * This function creates a 2D vector where each row corresponds to a square on the chessboard (0-63),
@@ -321,6 +343,22 @@ const std::vector<std::vector<u64>> rookAttackTable() {
     std::vector<std::vector<u64>> result;
     for (int i = 0; i < 64; i++) {
         result.push_back(rookAttackList(i));
+    }
+    return result;
+}
+
+/**
+ * @brief Generates a table of precomputed attack bitboards for a bishop on each square of the chessboard.
+ * 
+ * This function creates a 2D vector where each row corresponds to a square on the chessboard (0-63),
+ * and each element in the row represents a possible attack bitboard for a bishop on that square.
+ * 
+ * @return A 2D vector of 64 rows, where each row contains the precomputed attack bitboards for a bishop.
+ */
+const std::vector<std::vector<u64>> bishopAttackTable() {
+    std::vector<std::vector<u64>> result;
+    for (int i = 0; i < 64; i++) {
+        result.push_back(bishopAttackList(i));
     }
     return result;
 }
