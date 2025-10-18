@@ -1,8 +1,8 @@
 #pragma once
 #include "ChessDefinitons.h"
 #include "Bitboard.h"
-std::vector<u64> createKinghtAttack();
+const std::vector<u64> kinghtAttackTable();
 
-std::vector<u64> createPawnAttack();
+const std::vector<u64> pawnAttackTable();
 
-std::vector<u64> createKingAttack();
+const std::vector<u64> kingAttackTable();
