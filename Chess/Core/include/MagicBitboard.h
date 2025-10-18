@@ -84,5 +84,9 @@ u64 getRookAttack(int square, u64 occupancy);
 
 u64 getBishopAttack(int square, u64 occupancy);
 
+const std::vector<u64> rookAttackList(ui square);
+
+const std::vector<std::vector<u64>> rookAttackTable();
+
 std::vector<u64> blockerBoard(const u64 &blockerMask);
 
