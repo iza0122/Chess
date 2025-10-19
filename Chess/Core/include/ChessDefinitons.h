@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <vector>
 #include <iostream>
+#include <array>
 
 struct vector2D{
 	int x, y;
@@ -29,6 +30,10 @@ enum Piece : uint8_t {
 	WhitePawn, WhiteKnight, WhiteBishop, WhiteRook, WhiteQueen, WhiteKing,
 	BlackPawn, BlackKnight, BlackBishop, BlackRook, BlackQueen, BlackKing,
 	NoPiece
+};
+
+enum Color : uint8_t {
+	White, Black
 };
 
 enum direction : int8_t {

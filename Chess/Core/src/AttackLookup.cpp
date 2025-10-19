@@ -1,6 +1,5 @@
 #include "AttackLookup.h"
 #include "MagicBitboard.h"
-#include <array>
 
 vector2D knightDirection[8] = {
     {2, 1},
@@ -127,4 +126,27 @@ const std::vector<u64> kingAttackTable()
         KingAttack[i] = currentBitboard;
     }
     return KingAttack;
+}
+
+
+namespace AttackTable{
+    std::array<std::vector<u64>, 2> pawnAttack;
+    std::vector<u64> kingAttack;
+    std::vector<u64> knightAttack;
+    std::vector<std::vector<u64>> rookAttack;
+    std::vector<std::vector<u64>> bishopAttack;
+
+    void initAllAttackTable(){
+        pawnAttack = pawnAttackTable();
+        kingAttack = kingAttackTable();
+        knightAttack = kingAttackTable();
+        rookAttack = rookAttackTable();
+        bishopAttack = bishopAttackTable();
+    }
+
+    struct Initializer {
+        Initializer() { initAllAttackTable(); }
+    };
+
+    static Initializer _autoInit;
 }
