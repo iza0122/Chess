@@ -42,7 +42,7 @@ vector2D kingDirection[8] = {
  *                           with bits set for every square a knight on square s
  *                           can legally move to (board-edge checked).
  */
-const std::vector<u64> kinghtAttackTable()
+const std::vector<u64> knightAttackTable()
 {
     std::vector<u64> KnightAttack(64);
     for (int i = 0; i < 64; i++)
@@ -139,7 +139,7 @@ namespace AttackTable{
     void initAllAttackTable(){
         pawnAttack = pawnAttackTable();
         kingAttack = kingAttackTable();
-        knightAttack = kingAttackTable();
+        knightAttack = knightAttackTable();
         rookAttack = rookAttackTable();
         bishopAttack = bishopAttackTable();
     }
